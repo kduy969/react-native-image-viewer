@@ -191,28 +191,34 @@ export default class ImageViewer extends React.Component<Props, State> {
       return;
     }
 
-    Image.getSize(
-      image.url,
-      (width: number, height: number) => {
-        imageStatus.width = width;
-        imageStatus.height = height;
-        imageStatus.status = 'success';
-        saveImageSize();
-      },
-      () => {
-        try {
-          const data = (Image as any).resolveAssetSource(image.props.source);
-          imageStatus.width = data.width;
-          imageStatus.height = data.height;
-          imageStatus.status = 'success';
-          saveImageSize();
-        } catch (newError) {
-          // Give up..
-          imageStatus.status = 'fail';
-          saveImageSize();
-        }
-      }
-    );
+    //ignore get size
+    imageStatus.width = 100;
+    imageStatus.height = 100;
+    imageStatus.status = 'success';
+    saveImageSize();
+
+    // Image.getSize(
+    //   image.url,
+    //   (width: number, height: number) => {
+    //     imageStatus.width = width;
+    //     imageStatus.height = height;
+    //     imageStatus.status = 'success';
+    //     saveImageSize();
+    //   },
+    //   () => {
+    //     try {
+    //       const data = (Image as any).resolveAssetSource(image.props.source);
+    //       imageStatus.width = data.width;
+    //       imageStatus.height = data.height;
+    //       imageStatus.status = 'success';
+    //       saveImageSize();
+    //     } catch (newError) {
+    //       // Give up..
+    //       imageStatus.status = 'fail';
+    //       saveImageSize();
+    //     }
+    //   }
+    // );
   }
 
   /**
